@@ -12,8 +12,9 @@ const WORLD_HEIGHT = Math.floor(canvas.width / CELL_SIZE)
 const MOVE_INTERVAL = 150
 const FOOD_SPAWN_INTERVAL = 3000
 
+
 let input 
-let snake 
+let snake
 let foods
 let foodSpawnElapsed 
 let gameOver 
@@ -41,7 +42,7 @@ function reset(){
         y: 0
     }
 ]
- foodSpawnElapsed = 0
+foodSpawnElapsed = 0
  gameOver = false
  score = 0
 }
@@ -90,7 +91,8 @@ function update (delta) {
         score++
         foods.splice(foodEatenIndex, 1)
     }
-    
+
+
     const worldEdgeIntersect = head.x < 0 || head.x >= WORLD_WIDHT || head.y < 0
     || head.y >= WORLD_HEIGHT
     if (worldEdgeIntersect){
@@ -114,6 +116,8 @@ if (snakePartIntersect) {
             y: Math.floor(Math.random() * WORLD_HEIGHT)
         })
     }
+
+
 } 
 
 
@@ -121,15 +125,17 @@ if (snakePartIntersect) {
 function render () {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     
-    ctx.fillStyle = 'darkblue'
-    snake.parts.forEach(({ x, y, }) => {
-    ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-    })
-
+    
     ctx.fillStyle = 'red'
     foods.forEach(({ x, y, }) => {
         ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
         })
+  
+        ctx.fillStyle = 'darkgreen'
+    snake.parts.forEach(({ x, y, }) => {
+    ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    })
+
     
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
